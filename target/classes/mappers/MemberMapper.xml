@@ -7,7 +7,27 @@
 		select now()
 	</select>
 
-
+	<!-- ID 중복 체크 -->
+	<select id="selectDuplicationCheckUserId" resultType="int">
+		SELECT CASE WHEN COUNT(user_id) > 0 THEN 'N' ELSE '' END AS ids
+		FROM board_member
+		WHERE user_id = #{user_id};
+	</select>
+	
+	<!-- 이메일 중복 체크 -->
+	<select id="selectDuplicationCheckUserEmail" resultType="String">
+		SELECT CASE WHEN COUNT(user_email) > 0 THEN 'N' ELSE '' END AS ids
+		FROM board_member
+		WHERE user_id = #{user_email};
+	</select>	
+	
+	<!-- 비밀번호 중복 체크 -->
+	<select id="selectDuplicationCheckUserPwd" resultType="String">
+		SELECT CASE WHEN COUNT(user_pwd) > 0 THEN 'N' ELSE '' END AS ids
+		FROM board_member
+		WHERE user_id = #{user_pwd};
+	</select>		
+	
 
 
 
