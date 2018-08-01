@@ -13,11 +13,5 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 	
-	@RequestMapping("/getTime")
-	public String getTime() {
-		String time  = "";
-		time = memberService.getTime();
-		return time;
-	}
 
 }

@@ -21,16 +21,23 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<beans:bean id="sampleInterceptor" class="com.ratseno.board.common.interceptor.SampleInterceptor"></beans:bean>
+	<!-- 
+	<beans:bean id="loginInterceptor" class="com.ratseno.board.common.interceptor.LoginInterceptor"></beans:bean>
+	
+	<beans:bean id="authInterceptor" class="com.ratseno.board.common.interceptor.AuthInterceptor"></beans:bean>
 	
 	<interceptors>
 		<interceptor>
-			<mapping path="/doA"/>
-			<mapping path="/doB"/>
-			<beans:ref bean="sampleInterceptor"/>
+			<mapping path="/member/loginPost"/>
+			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
+		
+		<interceptor>
+			<mapping path="/sboard/register"/>
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>		
 	</interceptors>
-	
+	 -->
 	
 	<context:component-scan base-package="com.ratseno.board" />
 	

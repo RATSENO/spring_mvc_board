@@ -28,7 +28,20 @@
 		WHERE user_id = #{user_pwd};
 	</select>		
 	
-
+	<!-- 로그인 -->
+	<select id="login" resultType="com.ratseno.board.member.model.res.MemberLoginRes">
+		SELECT 
+			user_no				as userNo,
+			user_id 			as userId,
+		    user_name 			as userName,
+		    user_email 			as userEmail,
+		    reg_date 			as regDate,
+		    update_date 		as updateDate,
+		    user_phone_number 	as userPhoneNumber
+		FROM board_member
+		WHERE user_id = #{user_id}
+		AND user_pwd = #{user_pwd}
+	</select>	
 
 
 
