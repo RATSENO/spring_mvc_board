@@ -10,6 +10,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.mysql.cj.api.Session;
+
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
 	private static final String LOGIN = "login";
@@ -18,31 +20,32 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-
+		
 		HttpSession session = request.getSession();
+		
 		ModelMap modelMap = modelAndView.getModelMap();
 		Object memberLoginRes = modelMap.get("memberLoginRes");
-
-		if (memberLoginRes != null) {
-			logger.info("new login success");
-			session.setAttribute(LOGIN, memberLoginRes);
-			//response.sendRedirect("/");
-			
-			Object dest = session.getAttribute("dest");
-			response.sendRedirect(dest!=null ? (String)dest : "/" );
+		
+		if(memberLoginRes != null) {
+			logger.info("new Login");
+			session.setAttribute("LOGIN", memberLoginRes);
+			response.sendRedirect(request.getRequestURI());
+		}else {
+			response.sendRedirect("/member/login/page");
 		}
+
 
 	}
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-
+		
 		HttpSession session = request.getSession();
-
-		if (session.getAttribute(LOGIN) != null) {
-			logger.info("clear login data before");
-			session.removeAttribute(LOGIN);
+		
+		if(session.getAttribute("LOGIN")!= null) {
+			logger.info("clear login");
+			session.removeAttribute("LOGIN");
 		}
 
 		return true;

@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script type="text/javascript">
-	self.location = "/sboard/list"
-</script>
+	<h1>게시판 목록</h1>
 </body>
 </html>
