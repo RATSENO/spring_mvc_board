@@ -2,6 +2,9 @@ package com.ratseno.board.member.model.res;
 
 import com.ratseno.board.common.model.CommonVO;
 
+import lombok.Data;
+
+@Data
 public class MemberLoginRes extends CommonVO{
 	
 	//회원 번호
