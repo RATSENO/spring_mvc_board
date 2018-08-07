@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PageController {
 	
-	
+
 	@RequestMapping(value="/{depth1}/page")
 	public String goDepth1(@PathVariable String depth1, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		String returnUrl = "";
@@ -29,6 +29,6 @@ public class PageController {
 		
 		return returnUrl;
 	}
-	
+
 
 }

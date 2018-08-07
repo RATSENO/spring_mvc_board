@@ -30,6 +30,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			logger.info("new Login");
 			session.setAttribute("LOGIN", memberLoginRes);
 			Object dest = session.getAttribute("dest");
+			if(dest == null) {
+				dest = "/board/boardList/page";
+			}
 			response.sendRedirect(dest != null? (String)dest:"/");
 		}else {
 			response.sendRedirect("/member/login/page");
