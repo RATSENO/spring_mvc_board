@@ -23,20 +23,21 @@
 	
 
 	<beans:bean id="loginInterceptor" class="com.ratseno.board.common.interceptor.LoginInterceptor"></beans:bean>
-
+	
 	<beans:bean id="authInterceptor" class="com.ratseno.board.common.interceptor.AuthInterceptor"></beans:bean>
+
 
 	<interceptors>
 		<interceptor>
 			<mapping path="/member/loginPost"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
-		<!-- 	
+	
 		<interceptor>
-			<mapping path="/board/**/page"/>
+			<mapping path="/board/*/page"/>
 			<beans:ref bean="authInterceptor"/>
-		</interceptor>	
-		 -->
+		</interceptor>		
+		
 	</interceptors>
 
 	

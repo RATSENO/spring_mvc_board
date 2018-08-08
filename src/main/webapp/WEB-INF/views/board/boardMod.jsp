@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>게시판 목록</h1>
-	<a href="/board/boardReg/page">등록</a>
+	<h1>게시판 등록</h1>
 </body>
 </html>
