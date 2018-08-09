@@ -37,5 +37,7 @@
 		<property name="annotationClass" value="com.ratseno.board.common.annotation.Mapper"></property>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
+	
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 		
 </beans>
