@@ -9,19 +9,25 @@
     <title>RATSENO BOARD</title>
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" type="text/css" href="/resources/vendor/bootstrap/css/bootstrap.min.css" >
+    <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link rel="stylesheet" type="text/css" href="/resources/vendor/metisMenu/metisMenu.min.css" >
+    <link href="/resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link href="/resources/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="/resources/dist/css/sb-admin-2.css" >
+    <link href="/resources/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link rel="stylesheet" type="text/css" href="/resources/vendor/morrisjs/morris.css">
+    <link href="/resources/vendor/morrisjs/morris.css" rel="stylesheet" type="text/css" >
+    
+    <!-- DataTables Responsive CSS -->
+    <link href="/resources/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link rel="stylesheet" type="text/css" href="/resources/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link href="/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
