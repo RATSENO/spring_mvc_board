@@ -41,12 +41,12 @@
 		                                    <td></td>
 		                                </tr>
 		                            </tbody>
-		                        </table>
+		                        </table> 
 		                    </div>
-                            <form role="form">
-                                <button class="btn btn-primary" id="btnReg">등록</button>
-                                <button class="btn btn-info" id="btnMod">수정(임시)</button>
-                            </form>		                    
+                            <form role="form" >
+                                <button type="submit" class="btn btn-primary" id="btnReg">등록</button>
+                                <button type="submit" class="btn btn-info" id="btnMod">수정(임시)</button>
+                            </form>
 		                </div>
 		            </div>
 		        </div>
@@ -57,7 +57,11 @@
 	<%@include file="../include/plugin_js.jsp"%>
 </body>
 <script type="text/javascript">
+var formObj = null;
+
 $(function(){
+	
+	formObj = $("form[role='form']");
 	
 	$("#btnReg").on('click', function(){
 		console.log("등록");
@@ -74,14 +78,18 @@ $(function(){
 		var url = "";
 		var param = "";
 		
-		$(location).attr("href", "/board/boardReg/page");
+		formObj.attr("action", "/board/boardReg/page");
+		formObj.attr("method", "get");
+		formObj.submit();
 	}
 	
 	function goModPage(){
 		var url = "";
 		var param = "";
 		
-		$(location).attr("href", "/board/boardMod/page");
+		formObj.attr("action", "/board/boardMod/page");
+		formObj.attr("method", "get");
+		formObj.submit();
 	}
 	
 });

@@ -57,12 +57,41 @@
 		            </div>
 		        </div>
 		    </div>
-			<button type="submit" class="btn btn-primary">등록</button>
+		    <form role="form" >
+				<button type="submit" class="btn btn-primary" id="btnReg">등록</button>
+				<button type="submit" class="btn btn-info" id="btnList">목록</button>
+			</form>
 		</div>
 	</div>
 	
 	<%@include file="../include/plugin_js.jsp"%>
 </body>
+<script type="text/javascript">
+var formObj = null;
+
+$(function(){
+	
+	formObj = $("form[role='form']");
+	
+	$("#btnReg").on('click', function(){
+		goModProcess();
+	});
+	
+	$("#btnList").on('click', function(){
+		goList();
+	});
+});
 
 
+function goModProcess(){
+	
+}
+
+function goList(){
+	formObj.attr("action", "/board/boardList/page");
+	formObj.attr("method", "get");
+	formObj.submit();
+}
+
+</script>
 </html>
