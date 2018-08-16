@@ -28,12 +28,12 @@
 		                			<form role="form">
 		                				<div class="form-group">
 		                					<label>게시물 제목</label>
-		                					<input class="form-control" placeholder="게시물 제목을 입력하세요.">
+		                					<input class="form-control" placeholder="게시물 제목을 입력하세요." id="board_title">
 		                				</div>
                                         <div class="form-group">
                                             <label>게시물 내용</label>
-                                            <textarea class="form-control" rows="4"></textarea>
-                                        </div>		                				
+                                            <textarea class="form-control" rows="4" id="board_content"></textarea>
+                                        </div>                                     		                				
 		                			</form>
 		                		</div>
 		                	</div>
@@ -41,10 +41,8 @@
 		            </div>
 		        </div>
 		    </div>
-			<form role="form" >
-				<button type="submit" class="btn btn-primary" id="btnReg">등록</button>
-				<button type="submit" class="btn btn-info" id="btnList">목록</button>
-			</form>
+			<button type="submit" class="btn btn-primary" id="btnReg">등록</button>
+			<button type="submit" class="btn btn-info" id="btnList">목록</button>
 		</div>
 	</div>
 	
@@ -58,16 +56,67 @@ $(function(){
 	formObj = $("form[role='form']");
 	
 	$("#btnReg").on('click', function(){
-		goRegProcess();
+		var data = checkValid();
+		if(data != null){
+			goRegProcess(data);
+		}
+		return false;
 	});
 	
 	$("#btnList").on('click', function(){
 		goList();
 	});
+
 });
 
+function checkValid(){
+	var param = {};
+	
+	var board_title = ""
+	var board_content = "";
 
-function goRegProcess(){
+	board_title = $("#board_title").val().trim() || "";
+	board_content = $("#board_content").val().trim() || "";
+	
+	if(board_title === "")
+	{
+		alert("게시물 제목을 입력해주세요.");
+		return null;
+	}
+
+	if(board_content === "")
+	{
+		alert("게시물 내용을 입력해주세요.");
+		return null;
+	}
+	
+	param.board_title = board_title;
+	param.board_content = board_content;
+	
+	return param;
+}
+
+function goRegProcess(data){
+	var param = data;
+	
+	$.ajax({
+		type : 'post',
+		url  : '/board/regist',
+		headers : {
+			"Content-Type" : "application/json",
+			"X-HTTP-Method-Override" : "POST"
+		},
+		dataType : 'json',
+		data : JSON.stringify({
+			board_no : "",
+			board_title : data.board_title,
+			board_content : data.board_content,
+			reg_no : ""
+		}),
+		success : function(success){
+			console.log(success);
+		}
+		});
 	
 }
 
