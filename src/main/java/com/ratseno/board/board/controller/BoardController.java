@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ratseno.board.board.model.req.BoardRegReq;
+import com.ratseno.board.board.model.req.BoardSearchReq;
+import com.ratseno.board.board.model.res.BoardListRes;
+import com.ratseno.board.board.model.res.BoardRes;
 import com.ratseno.board.board.service.BoardService;
 import com.ratseno.board.common.annotation.LoginMemberInfo;
 
@@ -37,5 +40,24 @@ public class BoardController {
 		}
 		return entity;
 	}
+	
+	
+	@RequestMapping(value="/list", method=RequestMethod.POST)
+	public ResponseEntity<BoardListRes> boardList(HttpServletRequest request, @RequestBody BoardSearchReq boardSearchReq){
+		ResponseEntity<BoardListRes> entity = null;
+		BoardSearchReq req = boardSearchReq;
+		
+		BoardListRes res = new BoardListRes();
+		
+		try {
+			res = boardService.boardList(req);
+			entity = new ResponseEntity<BoardListRes>(res, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<BoardListRes>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
 
 }
