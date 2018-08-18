@@ -39,5 +39,7 @@
 	</bean>
 	
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	<bean id="loginMemberInfoAspect" class="com.ratseno.board.common.aop.LoginMemberInfoAspect" />
+
 		
 </beans>

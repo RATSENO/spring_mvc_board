@@ -21,14 +21,15 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
-	
+
 	@RequestMapping(value="/regist", method=RequestMethod.POST)
 	@LoginMemberInfo
 	public ResponseEntity<String> boardRegist(HttpServletRequest request, @RequestBody BoardRegReq boardRegReq){
 		ResponseEntity<String> entity = null;
+		BoardRegReq req = boardRegReq;
 		
 		try {
-			boardService.boardRegist(boardRegReq);
+			boardService.boardRegist(req);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
