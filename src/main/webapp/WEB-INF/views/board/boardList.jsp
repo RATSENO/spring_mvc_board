@@ -23,29 +23,38 @@
 		                    Basic Table
 		                </div>
 		                <div class="panel-body">
-		                    <div class="table table-striped table-bordered table-hover" id="dataTables-example">
-		                        <table class="table">
-		                            <thead>
-		                                <tr>
-		                                    <th>#</th>
-		                                    <th>First Name</th>
-		                                    <th>Last Name</th>
-		                                    <th>Username</th>
-		                                </tr>
-		                            </thead>
-		                            <tbody>
-		                                <tr>
-		                                    <td></td>
-		                                    <td></td>
-		                                    <td></td>
-		                                    <td></td>
-		                                </tr>
-		                            </tbody>
-		                        </table> 
-		                    </div>
+		                	<div class="low">
+		                		<div class="col-sm-6">
+		                		</div>
+		                		<div class="col-sm-6">
+		                			<input type="text" id="searchTxt">
+		                			<button type="button" id="btnSearch">검색</button>
+		                		</div>
+		                	</div>
+		                	<div class="low">
+		                		<div class="col-sm-12">
+				                    <div class="table table-striped table-bordered table-hover" >
+				                        <table class="table">
+				                            <thead>
+				                                <tr>
+				                                    <th>게시물 번호</th>
+				                                    <th>게시물 제목</th>
+				                                    <th>등록자 ID</th>
+				                                    <th>등록일</th>
+				                                    <th>수정일</th>
+				                                </tr>
+				                            </thead>
+				                            <tbody id="boardList">
+				                                <tr>
+				                                    <td colspan="5" align="center">조회 결과가 없습니다.</td>
+				                                </tr>
+				                            </tbody>
+				                        </table> 
+				                    </div>		                		
+		                		</div>
+		                	</div>
                             <form role="form" >
                                 <button type="submit" class="btn btn-primary" id="btnReg">등록</button>
-                                <button type="submit" class="btn btn-info" id="btnMod">수정(임시)</button>
                             </form>
 		                </div>
 		            </div>
@@ -66,33 +75,89 @@ $(function(){
 	$("#btnReg").on('click', function(){
 		console.log("등록");
 		goRegPage();
+		
+		return false;
 	});
 	
-	$("#btnMod").on('click', function(){
-		console.log("수정");
-		goModPage();
+	$("#btnSearch").on("click", function(){
+		console.log("검색");
+		getList();
+		
+		return false;
 	});
-	
-	
-	function goRegPage(){
-		var url = "";
-		var param = "";
+
+	$("#boardList").on( 'click', 'a.board-detail', function(){
+		var $a = $(this);
+		var board_no = $a.data("board_no");
+		var data = {};
+		data.board_no = board_no;
+		goModPage(data);
 		
-		formObj.attr("action", "/board/boardReg/page");
-		formObj.attr("method", "get");
-		formObj.submit();
-	}
-	
-	function goModPage(){
-		var url = "";
-		var param = "";
-		
-		formObj.attr("action", "/board/boardMod/page");
-		formObj.attr("method", "get");
-		formObj.submit();
-	}
+		return false;
+	});
 	
 });
+
+function getList(){
+	var url = "/board/list";
+	var searchKeyword = "";
+	var param = {};
+	param.searchKeyword = searchKeyword;
+	
+	$.ajax({
+		type:'post',
+		url : url,
+		headers : {
+			"Content-Type" : "application/json",
+			"X-HTTP-Method-Override" : "POST"
+		},
+		dataType:'json',
+		data : JSON.stringify(param),
+		success : function(res){
+			console.log(res);
+			createTable(res);
+		}
+	});
+}
+
+function createTable(res){
+	var resultList = res.boardList;
+	if(resultList.length > 0){
+		var $boardList = $("#boardList");
+		$boardList.html("");
+		var html = "";
+		for(i in resultList){
+			html += "<tr>";
+			html +=  "	<td><a href='' class='board-detail' data-board_no="+  resultList[i].board_no +">"+ resultList[i].board_no+"<a/></td>";
+			//html +=  "	<td>"+ resultList[i].board_no +"</td>";
+			html +=  "	<td>"+ resultList[i].board_title +"</td>";
+			html +=  "	<td>"+ resultList[i].reg_id +"</td>";
+			html +=  "	<td>"+ resultList[i].reg_date +"</td>";
+			html +=  "	<td>"+ resultList[i].update_date +"</td>";
+			html +=  "</tr>";
+		}
+		$boardList.append(html);
+	}
+}
+
+function goRegPage(){
+	var url = "";
+	var param = "";
+	
+	formObj.attr("action", "/board/boardReg/page");
+	formObj.attr("method", "get");
+	formObj.submit();
+}
+
+function goModPage(data){
+	var url = "/board/boardMod/page";
+	var param = "";
+	param += "?board_no=" +data.board_no 
+	
+	formObj.attr("action", url+param);
+	formObj.attr("method", "get");
+	formObj.submit();
+}
 
 </script>
 
