@@ -11,6 +11,7 @@ import com.ratseno.board.board.model.req.BoardSearchReq;
 import com.ratseno.board.board.model.res.BoardListRes;
 import com.ratseno.board.board.model.res.BoardRes;
 import com.ratseno.board.board.service.BoardService;
+import com.ratseno.board.common.model.PageInfo;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -28,6 +29,8 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public BoardListRes boardList(BoardSearchReq boardSearchReq) throws Exception {
 		BoardListRes res = new BoardListRes();
+		PageInfo pageInfo = new PageInfo();
+		boardSearchReq.setCurPageNo();
 		
 		List<BoardRes> boardList = boardMapper.selectBoardList(boardSearchReq);
 		int boardCnt = boardMapper.selectBoardCnt(boardSearchReq);
@@ -36,7 +39,13 @@ public class BoardServiceImpl implements BoardService {
 			res.setBoardList(null);
 		}
 		
+		pageInfo.setPage_no(boardSearchReq.getPage_no());
+		pageInfo.setPage_size(boardSearchReq.getPage_size());
+		pageInfo.setPage_result_count(boardList.size());
+		pageInfo.setTotal_count(boardCnt);
+		res.setPageInfo(pageInfo);
 		res.setBoardList(boardList);
+		
 		return res;
 	}
 

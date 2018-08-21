@@ -24,12 +24,24 @@
 		                </div>
 		                <div class="panel-body">
 		                	<div class="low">
-		                		<div class="col-sm-6">
-		                		</div>
-		                		<div class="col-sm-6">
-		                			<input type="text" id="searchTxt">
-		                			<button type="button" id="btnSearch">검색</button>
-		                		</div>
+		                		<div class="col-sm-12">
+			                		<div class="col-sm-4">
+			                			조회 결과 : <span id="resultCnt">0</span>개
+			                		</div>
+			                		<div class="col-sm-4">
+			                			<input type="text" id="searchTxt">
+			                			<button type="button" id="btnSearch">검색</button>
+			                		</div>
+	                                <div class="col-sm-4">
+	                                    <select class="form-control" id="pageSize">
+	                                        <option>10</option>
+	                                        <option>20</option>
+	                                        <option>30</option>
+	                                        <option>40</option>
+	                                        <option>50</option>
+	                                    </select>
+	                                </div>
+                                </div>		                		
 		                	</div>
 		                	<div class="low">
 		                		<div class="col-sm-12">
@@ -103,6 +115,8 @@ function getList(){
 	var searchKeyword = "";
 	var param = {};
 	param.searchKeyword = searchKeyword;
+	param.page_no = 1;
+	param.page_size = $("#pageSize option:selected").val()*1;
 	
 	$.ajax({
 		type:'post',
@@ -122,6 +136,7 @@ function getList(){
 
 function createTable(res){
 	var resultList = res.boardList;
+	var pageInfo   = res.pageInfo;
 	if(resultList.length > 0){
 		var $boardList = $("#boardList");
 		$boardList.html("");
@@ -137,6 +152,7 @@ function createTable(res){
 			html +=  "</tr>";
 		}
 		$boardList.append(html);
+		$("#resultCnt").text(pageInfo.page_result_count);
 	}
 }
 

@@ -32,7 +32,8 @@
 		        ,member.user_id		as reg_id
 		FROM board_board board
 		LEFT JOIN board_member member
-		ON board.reg_no = member.user_no;	
+		ON board.reg_no = member.user_no
+		LIMIT #{current_page_no}, #{page_size}	
 	</select>
 
 	<!-- 게시물 상세 조회 -->

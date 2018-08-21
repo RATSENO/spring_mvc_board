@@ -1,5 +1,7 @@
 package com.ratseno.board.board.model.req;
 
+import com.ratseno.board.common.model.PageInfo;
+
 import lombok.Data;
 
 @Data

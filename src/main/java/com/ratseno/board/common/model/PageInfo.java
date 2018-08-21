@@ -1,50 +1,16 @@
 package com.ratseno.board.common.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.Data;
 
 @Data
-public class PageInfo extends CommonVO {
+public class PageInfo{
 
 	// 현재 페이지
-	private Integer page;
+	private Integer page_no;
 	// 한 페이지의 출력 건수
-	private Integer pageSize;
+	private Integer page_size;
 	// 현재 페이지 건수
-	private Integer pageResultCount;
+	private Integer page_result_count;
 	// 전체 건수
-	private Integer totalCount;
-
-	@JsonIgnore
-	private Integer startRowNum;
-	@JsonIgnore
-	private Integer endRowNum;
-
-	public PageInfo() {
-		super();
-	}
-
-	public PageInfo(int page, int pageSize, int pageResultCount, int totalCount) {
-		this.page = page;
-		this.pageSize = pageSize;
-		this.pageResultCount = pageResultCount;
-		this.totalCount = totalCount;
-	}
-
-	public PageInfo(int page, int pageSize) {
-		this.page = page;
-		this.pageSize = pageSize;
-	}
-
-	// paging
-	public Integer getStartRowNum() {
-		return ((page - 1) * pageSize);
-	}
-
-	// paging
-	public Integer getEndRowNum() {
-		return (page) * pageSize;
-	}
-
+	private Integer total_count;
 }
