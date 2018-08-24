@@ -25,6 +25,21 @@ public class BoardServiceImpl implements BoardService {
 		int resultCnt = boardMapper.insertBoard(boardRegReq);
 	}
 
+	/*게시물 등록 테스트 100건*/
+	@Override
+	public void boardTestRegist() throws Exception {
+		BoardRegReq testReq = null;
+		
+		for(int i=0; i<100; i++) {
+			testReq = new BoardRegReq();
+			testReq.setReg_no(1);
+			testReq.setBoard_title("test"+i);
+			testReq.setBoard_content("test"+i);
+			
+			boardMapper.insertBoard(testReq);
+		}
+	}
+	
 	/*게시물 목록 조회*/
 	@Override
 	public BoardListRes boardList(BoardSearchReq boardSearchReq) throws Exception {
@@ -55,5 +70,7 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 }

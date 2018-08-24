@@ -12,6 +12,9 @@ public interface BoardService {
 	/*게시물 등록*/
 	public void boardRegist(BoardRegReq boardRegReq) throws Exception;
 	
+	/*게시물 등록 테스트 100건*/
+	public void boardTestRegist()throws Exception;
+	
 	/*게시물 목록 조회*/
 	public BoardListRes boardList(BoardSearchReq boardSearchReq)throws Exception;
 

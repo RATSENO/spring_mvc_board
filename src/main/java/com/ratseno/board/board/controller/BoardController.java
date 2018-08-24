@@ -59,5 +59,11 @@ public class BoardController {
 		return entity;
 	}
 	
+	@RequestMapping(value="/testBoardRegist", method= RequestMethod.POST)
+	public void test100boardRegist() throws Exception {
+		boardService.boardTestRegist();
+	}
+	
+	
 
 }

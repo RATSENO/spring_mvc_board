@@ -65,6 +65,8 @@
 				                    </div>		                		
 		                		</div>
 		                	</div>
+		                	<div id="pageList">
+		                	</div>
                             <form role="form" >
                                 <button type="submit" class="btn btn-primary" id="btnReg">등록</button>
                             </form>
@@ -110,12 +112,16 @@ $(function(){
 	
 });
 
-function getList(){
+function getList(page_no){
 	var url = "/board/list";
 	var searchKeyword = "";
 	var param = {};
 	param.searchKeyword = searchKeyword;
-	param.page_no = 1;
+	if(page_no){
+		param.page_no = page_no;
+	}else{
+		param.page_no = 1;
+	}
 	param.page_size = $("#pageSize option:selected").val()*1;
 	
 	$.ajax({
@@ -152,7 +158,8 @@ function createTable(res){
 			html +=  "</tr>";
 		}
 		$boardList.append(html);
-		$("#resultCnt").text(pageInfo.page_result_count);
+		$("#resultCnt").text(pageInfo.total_count);
+		drawPageNavigation(pageInfo.total_count, pageInfo.page_no, pageInfo.page_size, 10, "getList", "pageList");
 	}
 }
 
