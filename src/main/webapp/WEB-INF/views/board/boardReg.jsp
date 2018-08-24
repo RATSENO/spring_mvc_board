@@ -113,10 +113,11 @@ function goRegProcess(data){
 			board_content : data.board_content,
 			reg_no : ""
 		}),
-		success : function(success){
-			console.log(success);
+		success : function(res){
+			console.log(res);
+			alert('등록되었습니다.');
 		}
-		});
+	});
 	
 }
 

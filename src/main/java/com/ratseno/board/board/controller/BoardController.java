@@ -64,6 +64,11 @@ public class BoardController {
 		boardService.boardTestRegist();
 	}
 	
+	@RequestMapping(value="/testBoardDelete", method=RequestMethod.POST)
+	public void testBoardDelete() throws Exception {
+		boardService.boardTestDeleteAll();
+	}
+	
 	
 
 }

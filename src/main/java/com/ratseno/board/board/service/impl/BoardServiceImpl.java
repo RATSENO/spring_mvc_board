@@ -71,6 +71,12 @@ public class BoardServiceImpl implements BoardService {
 		return null;
 	}
 
+	/*게시물 테스트 전체 삭제*/
+	@Override
+	public void boardTestDeleteAll() throws Exception {
+		int delete = boardMapper.deleteBoardAll();
+	}
+
 
 
 }

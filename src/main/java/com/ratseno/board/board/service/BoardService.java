@@ -20,4 +20,8 @@ public interface BoardService {
 
 	/*게시물 상세 조회*/
 	public BoardListRes boardDetail(BoardSearchReq boardSearchReq)throws Exception;
+
+	/*게시물 테스트 전체 삭제*/
+	public void boardTestDeleteAll()throws Exception;
 }
+

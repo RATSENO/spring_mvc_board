@@ -22,4 +22,6 @@ public interface BoardMapper {
 	/*게시물 갯수 조회*/
 	public int selectBoardCnt(BoardSearchReq boardSearchReq);
 	
+	/*게시물 전체 삭제*/
+	public int deleteBoardAll();
 }

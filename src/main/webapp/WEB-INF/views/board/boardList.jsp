@@ -69,6 +69,8 @@
 		                	</div>
                             <form role="form" >
                                 <button type="submit" class="btn btn-primary" id="btnReg">등록</button>
+                                <button type="submit" class="btn btn-danger" id="btnTestReg">TEST등록</button>
+                                <button type="submit" class="btn btn-danger" id="btnTestDel">TEST삭제</button>
                             </form>
 		                </div>
 		            </div>
@@ -92,7 +94,7 @@ $(function(){
 		
 		return false;
 	});
-	
+
 	$("#btnSearch").on("click", function(){
 		console.log("검색");
 		getList();
@@ -109,6 +111,43 @@ $(function(){
 		
 		return false;
 	});
+
+	$("#btnTestReg").on('click', function(){
+		$.ajax({
+			type:'post',
+			url : "/board/testBoardRegist",
+			headers : {
+				"Content-Type" : "application/json",
+				"X-HTTP-Method-Override" : "POST"
+			},
+			dataType:'json',
+			data : JSON.stringify({}),
+			success : function(res){
+				
+			}
+		});
+
+		return false;
+	});
+	
+	$("#btnTestDel").on('click', function(){
+		$.ajax({
+			type:'post',
+			url : "/board/testBoardDelete",
+			headers : {
+				"Content-Type" : "application/json",
+				"X-HTTP-Method-Override" : "POST"
+			},
+			dataType:'json',
+			data : JSON.stringify({}),
+			success : function(res){
+				
+			}
+		});
+		
+		return false;
+	});
+	
 	
 });
 
