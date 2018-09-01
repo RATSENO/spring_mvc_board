@@ -13,7 +13,10 @@ public interface ReplyMapper {
 	public int insertReply(ReplyReq replyReq)throws Exception;
 	
 	/*댓글 목록 조회*/
-	public List<ReplyRes> selectReplyList(Integer board_no)throws Exception;
+	public List<ReplyRes> selectReplyList(ReplyReq replyReq)throws Exception;
+	
+	/*댓글 갯수 조회*/
+	public int selectReplyCnt(ReplyReq replyReq);
 	
 	/*댓글 수정*/
 	public int updateReply(ReplyReq replyReq)throws Exception;

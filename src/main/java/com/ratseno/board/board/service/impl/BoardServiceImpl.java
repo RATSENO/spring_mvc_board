@@ -58,6 +58,7 @@ public class BoardServiceImpl implements BoardService {
 		pageInfo.setPage_size(boardSearchReq.getPage_size());
 		pageInfo.setPage_result_count(boardList.size());
 		pageInfo.setTotal_count(boardCnt);
+		
 		res.setPageInfo(pageInfo);
 		res.setBoardList(boardList);
 		

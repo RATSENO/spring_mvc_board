@@ -84,10 +84,19 @@
 <script type="text/javascript">
 var formObj = null;
 
+var urlParam = {
+		list : ""
+}
+
 $(function(){
 	
-	formObj = $("form[role='form']");
+	urlParam.list 	  = getUrlParameter("list");
 	
+	if(urlParam.list != "N"){
+		init();
+	}
+	
+	formObj = $("form[role='form']");
 	$("#btnReg").on('click', function(){
 		console.log("등록");
 		goRegPage();
@@ -126,7 +135,6 @@ $(function(){
 				
 			}
 		});
-
 		return false;
 	});
 	
@@ -147,9 +155,11 @@ $(function(){
 		
 		return false;
 	});
-	
-	
 });
+
+function init(){
+	getList();
+}
 
 function getList(page_no){
 	var url = "/board/list";
@@ -214,7 +224,10 @@ function goRegPage(){
 function goDetailPage(data){
 	var url = "/board/boardDetail/page";
 	var param = "";
+	
+	var list = $("#resultCnt").text() == "0" ? "N" : "Y"; 
 	param += "?board_no=" +data.board_no;
+	param += "&list=" + list;
 	
 	location.href=url+param;
 }

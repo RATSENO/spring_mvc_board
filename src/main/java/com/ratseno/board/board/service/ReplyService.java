@@ -9,7 +9,7 @@ public interface ReplyService {
 	public void replyRegist(ReplyReq replyReq)throws Exception;
 	
 	/*댓글 목록 조회*/
-	public ReplyListRes replyList(Integer board_no)throws Exception;
+	public ReplyListRes replyList(ReplyReq replyReq)throws Exception;
 	
 	/*댓글 수정*/
 	public void modifyReply(ReplyReq replyReq)throws Exception;

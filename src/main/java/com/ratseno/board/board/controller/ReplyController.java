@@ -40,15 +40,15 @@ public class ReplyController {
 		return entity;
 	}
 	
-	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public ResponseEntity<ReplyListRes> replyList(HttpServletRequest request, @RequestParam("board_no")Integer boardNo){
+	@RequestMapping(value="/list", method=RequestMethod.POST)
+	public ResponseEntity<ReplyListRes> replyList(HttpServletRequest request, @RequestBody ReplyReq replyReq){
 		ResponseEntity<ReplyListRes> entity = null;
-		Integer board_no = boardNo;
+		ReplyReq req = replyReq;
 		
 		ReplyListRes res = new ReplyListRes();
 		
 		try {
-			res = replyService.replyList(board_no);
+			res = replyService.replyList(replyReq);
 			entity = new ResponseEntity<ReplyListRes>(res, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
