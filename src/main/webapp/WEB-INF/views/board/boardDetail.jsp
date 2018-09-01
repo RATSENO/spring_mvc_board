@@ -13,14 +13,14 @@
 		<div id="page-wrapper">
 			<div class="row">
 			    <div class="col-lg-12">
-			        <h1 class="page-header">게시물 수정</h1>
+			        <h1 class="page-header">게시물 상세</h1>
 			    </div>
 			</div>
 		    <div class="row">
 		        <div class="col-lg-12">
 		            <div class="panel panel-default">
 		                <div class="panel-heading">
-		                    게시물 수정
+		                    게시물 상세
 		                </div>
 		                <div class="panel-body">
 		                	<div class="row">
@@ -32,11 +32,11 @@
 		                				</div>		                			
 		                				<div class="form-group">
 		                					<label>게시물 제목</label>
-		                					<input class="form-control" id="boardTitle" placeholder="게시물 제목을 입력하세요.">
+		                					<input class="form-control" id="boardTitle" readonly>
 		                				</div>
                                         <div class="form-group">
                                             <label>게시물 내용</label>
-                                            <textarea class="form-control" id="boardContent" rows="4"></textarea>
+                                            <textarea class="form-control" id="boardContent" rows="4" readonly></textarea>
                                         </div>
 		                				<div class="form-group">
 		                					<label>게시물 등록자</label>
@@ -57,10 +57,9 @@
 		            </div>
 		        </div>
 		    </div>
-		    <form role="form" >
-				<button type="submit" class="btn btn-primary" id="btnReg">등록</button>
-				<button type="submit" class="btn btn-info" id="btnList">목록</button>
-			</form>
+		    <div class="row">
+				<button type="button" class="btn btn-info" id="btnList">목록</button>
+			</div> 
 		</div>
 	</div>
 	
@@ -80,10 +79,6 @@ $(function(){
 	urlParam.list 	  = getUrlParameter("list") || "N";
 	
 	formObj = $("form[role='form']");
-	
-	$("#btnReg").on('click', function(){
-		goModProcess();
-	});
 	
 	$("#btnList").on('click', function(){
 		goList();
@@ -129,10 +124,6 @@ function setDetailData(res){
 	$("#regId").val(detailData.reg_id);
 	$("#regDate").val(detailData.reg_date);
 	$("#updateDate").val(detailData.update_date);
-	
-}
-
-function goModProcess(){
 	
 }
 

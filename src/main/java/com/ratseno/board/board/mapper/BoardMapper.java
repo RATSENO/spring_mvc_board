@@ -17,7 +17,7 @@ public interface BoardMapper {
 	public List<BoardRes> selectBoardList(BoardSearchReq boardSearchReq)throws Exception;
 
 	/*게시물 상세 조회*/
-	public BoardRes selectBoardDetail(BoardSearchReq boardSearchReq)throws Exception;
+	public List<BoardRes> selectBoardDetail(BoardSearchReq boardSearchReq)throws Exception;
 	
 	/*게시물 갯수 조회*/
 	public int selectBoardCnt(BoardSearchReq boardSearchReq);

@@ -8,11 +8,11 @@ import lombok.Data;
 public class BoardRes extends CommonVO{
 	
 	//게시물 번호
-	int board_no;
+	Integer board_no;
 	
 	String board_title;
 	
 	String board_content;
 	
-	String reg_no;
+	Integer reg_no;
 }

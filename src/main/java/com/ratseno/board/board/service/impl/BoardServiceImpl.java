@@ -67,8 +67,28 @@ public class BoardServiceImpl implements BoardService {
 	/*게시물 상세 조회*/
 	@Override
 	public BoardListRes boardDetail(BoardSearchReq boardSearchReq) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		BoardListRes res = new BoardListRes();
+		PageInfo pageInfo = new PageInfo();
+		
+		boardSearchReq.setPage_no(1);
+		boardSearchReq.setPage_no(10);
+		boardSearchReq.setCurPageNo();
+		
+		List<BoardRes> boardList = boardMapper.selectBoardDetail(boardSearchReq);
+		int boardCnt = boardMapper.selectBoardCnt(boardSearchReq);
+		
+		if(boardCnt == 0 && boardList.isEmpty()) {
+			res.setBoardList(null);
+		}
+		
+		pageInfo.setPage_no(boardSearchReq.getPage_no());
+		pageInfo.setPage_size(boardSearchReq.getPage_size());
+		pageInfo.setPage_result_count(boardList.size());
+		pageInfo.setTotal_count(boardCnt);
+		res.setPageInfo(pageInfo);
+		res.setBoardList(boardList);
+		
+		return res;
 	}
 
 	/*게시물 테스트 전체 삭제*/

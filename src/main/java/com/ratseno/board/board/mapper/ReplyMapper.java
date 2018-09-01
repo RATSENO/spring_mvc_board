@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.ratseno.board.board.model.req.ReplyReq;
 import com.ratseno.board.board.model.res.ReplyRes;
+import com.ratseno.board.common.annotation.Mapper;
 
+@Mapper
 public interface ReplyMapper {
 
 	/*댓글 등록*/

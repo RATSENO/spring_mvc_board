@@ -107,7 +107,7 @@ $(function(){
 		var board_no = $a.data("board_no");
 		var data = {};
 		data.board_no = board_no;
-		goModPage(data);
+		goDetailPage(data);
 		
 		return false;
 	});
@@ -211,14 +211,12 @@ function goRegPage(){
 	formObj.submit();
 }
 
-function goModPage(data){
-	var url = "/board/boardMod/page";
+function goDetailPage(data){
+	var url = "/board/boardDetail/page";
 	var param = "";
-	param += "?board_no=" +data.board_no 
+	param += "?board_no=" +data.board_no;
 	
-	formObj.attr("action", url+param);
-	formObj.attr("method", "get");
-	formObj.submit();
+	location.href=url+param;
 }
 
 </script>

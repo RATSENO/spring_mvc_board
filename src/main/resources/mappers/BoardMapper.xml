@@ -33,6 +33,13 @@
 		FROM board_board board
 		LEFT JOIN board_member member
 		ON board.reg_no = member.user_no
+		WHERE 1=1
+		<if test="board_title!=null and board_title!=''">
+			AND board.board_title = #{board_title}
+		</if>
+		<if test="board_no!=null and board_no!=0">
+			AND board.board_no = #{board_no}
+		</if>
 		LIMIT #{current_page_no}, #{page_size}	
 	</select>
 
@@ -58,7 +65,14 @@
 				count(1)
 		FROM board_board board
 		LEFT JOIN board_member member
-		ON board.reg_no = member.user_no;	
+		ON board.reg_no = member.user_no
+		WHERE 1=1
+		<if test="board_title!=null and board_title!=''">
+			AND board.board_title = #{board_title}
+		</if>
+		<if test="board_no!=null and board_no!=0">
+			AND board.board_no = #{board_no}
+		</if>			
 	</select>
 
 
