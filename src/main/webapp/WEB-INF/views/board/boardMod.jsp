@@ -137,7 +137,7 @@ function goModProcess(){
 }
 
 function goList(){
-	formObj.attr("action", "/board/boardList/page");
+	formObj.attr("action", "/board/boardMyList/page");
 	formObj.attr("method", "get");
 	formObj.submit();
 }

@@ -59,6 +59,28 @@ public class BoardController {
 		return entity;
 	}
 	
+	
+	@RequestMapping(value="/mylist", method=RequestMethod.POST)
+	@LoginMemberInfo
+	public ResponseEntity<BoardListRes> boardMyList(HttpServletRequest request, @RequestBody BoardSearchReq boardSearchReq){
+		ResponseEntity<BoardListRes> entity = null;
+		BoardSearchReq req = boardSearchReq;
+		
+		BoardListRes res = new BoardListRes();
+		
+		try {
+			res = boardService.boardList(req);
+			entity = new ResponseEntity<BoardListRes>(res, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<BoardListRes>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	
+	
+	
 	@RequestMapping(value="/detail", method=RequestMethod.POST)
 	public ResponseEntity<BoardListRes> boardDetail(HttpServletRequest request, @RequestBody BoardSearchReq boardSearchReq){
 		ResponseEntity<BoardListRes> entity = null;

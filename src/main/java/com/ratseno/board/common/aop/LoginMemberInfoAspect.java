@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.ratseno.board.board.model.req.BoardRegReq;
+import com.ratseno.board.board.model.req.BoardSearchReq;
 import com.ratseno.board.common.interceptor.AuthInterceptor;
 import com.ratseno.board.member.model.res.MemberLoginRes;
 
@@ -28,7 +29,9 @@ public class LoginMemberInfoAspect {
 
 		HttpServletRequest request = null;
 		HttpServletResponse response = null;
+		
 		BoardRegReq boardRegReq = null;
+		BoardSearchReq boardSearchReq = null; 
 		
 		for(Object o : joinPoint.getArgs()) {
 			if(o instanceof HttpServletRequest) {
@@ -40,13 +43,22 @@ public class LoginMemberInfoAspect {
 			if(o instanceof BoardRegReq) {
 				boardRegReq= (BoardRegReq) o;
 			}
+			if(o instanceof BoardSearchReq) {
+				boardSearchReq = (BoardSearchReq) o;
+			}
 		}
 		
 		HttpSession session = request.getSession();
 		MemberLoginRes memberLoginRes = (MemberLoginRes) session.getAttribute("LOGIN");
 		logger.info("memberLoginRes", memberLoginRes);
 
-		boardRegReq.setReg_no(memberLoginRes.getUserNo());
+		if(boardRegReq != null) {
+			boardRegReq.setReg_no(memberLoginRes.getUserNo());
+		}
+		if(boardSearchReq != null) {
+			boardSearchReq.setReg_no(memberLoginRes.getUserNo());
+		}
+		
 		Object result = joinPoint.proceed();
 		
 		return result;

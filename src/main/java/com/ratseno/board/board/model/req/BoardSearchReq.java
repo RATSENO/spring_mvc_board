@@ -9,6 +9,9 @@ public class BoardSearchReq {
 	String board_title;
 	//게시물 번호
 	Integer board_no;
+	//게시물 등록자 번호
+	Integer reg_no;
+	
 	//페이지 번호
 	private Integer page_no;
 	//페이지 사이즈

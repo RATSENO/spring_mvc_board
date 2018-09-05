@@ -40,6 +40,9 @@
 		<if test="board_no!=null and board_no!=0">
 			AND board.board_no = #{board_no}
 		</if>
+		<if test="reg_no!=null and reg_no!=''">
+			And board.reg_no = #{reg_no}
+		</if>
 		LIMIT #{current_page_no}, #{page_size}	
 	</select>
 
@@ -72,7 +75,10 @@
 		</if>
 		<if test="board_no!=null and board_no!=0">
 			AND board.board_no = #{board_no}
-		</if>			
+		</if>
+		<if test="reg_no!=null and reg_no!=''">
+			And board.reg_no = #{reg_no}
+		</if>					
 	</select>
 
 
