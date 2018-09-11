@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ratseno.board.board.mapper.BoardMapper;
 import com.ratseno.board.board.model.req.BoardModReq;
@@ -95,6 +96,7 @@ public class BoardServiceImpl implements BoardService {
 
 	/*게시물 테스트 전체 삭제*/
 	@Override
+	@Transactional
 	public void boardTestDeleteAll() throws Exception {
 		int delete = boardMapper.deleteBoardAll();
 	}

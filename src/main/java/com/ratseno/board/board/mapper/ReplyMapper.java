@@ -23,4 +23,7 @@ public interface ReplyMapper {
 	
 	/*댓글 삭제*/
 	public int deleteReply(Integer reply_no);
+	
+	/*게시물 하위 댓글 전체 삭제*/
+	public int deleteReplyByBoardNo(Integer board_no);
 }
