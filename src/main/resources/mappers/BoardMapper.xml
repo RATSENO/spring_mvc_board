@@ -43,6 +43,7 @@
 		<if test="reg_no!=null and reg_no!=''">
 			And board.reg_no = #{reg_no}
 		</if>
+		ORDER BY reg_date DESC
 		LIMIT #{current_page_no}, #{page_size}	
 	</select>
 
