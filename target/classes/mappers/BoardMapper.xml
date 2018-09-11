@@ -81,11 +81,20 @@
 		</if>					
 	</select>
 
+	<!-- 게시물 수정 -->
+	<update id="updateBoard" parameterType="com.ratseno.board.board.model.req.BoardModReq">
+		UPDATE board_board
+		SET
+			board_title = #{board_title}
+			,board_content = #{board_content}
+			,reg_date = now()
+			,update_date = now()
+		WHERE board_no = #{board_no};
+	</update>
 
 	<delete id="deleteBoardAll">
 		DELETE FROM board_board;
 	</delete>
-
 
 
 

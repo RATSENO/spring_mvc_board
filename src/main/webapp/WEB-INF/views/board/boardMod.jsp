@@ -57,10 +57,8 @@
 		            </div>
 		        </div>
 		    </div>
-		    <form role="form" >
-				<button type="submit" class="btn btn-primary" id="btnReg">등록</button>
-				<button type="submit" class="btn btn-info" id="btnList">목록</button>
-			</form>
+			<button type="button" class="btn btn-primary" id="btnMod">수정</button>
+			<button type="button" class="btn btn-info" id="btnList">목록</button>
 		</div>
 	</div>
 	
@@ -74,6 +72,8 @@ var urlParam = {
 		list : "N"
 }
 
+var dtlBoardNo = "";
+
 $(function(){
 	
 	urlParam.board_no = getUrlParameter("board_no") || "";
@@ -81,8 +81,12 @@ $(function(){
 	
 	formObj = $("form[role='form']");
 	
-	$("#btnReg").on('click', function(){
-		goModProcess();
+	$("#btnMod").on('click', function(){
+		var data = checkValid();
+		if(data != null){
+			goModProcess(data);
+		}
+		return false;
 	});
 	
 	$("#btnList").on('click', function(){
@@ -120,9 +124,36 @@ function getDetail(){
 	});
 }
 
+function checkValid(){
+	var param = {};
+	
+	var board_no = "";
+	var board_title = "";
+	var board_content = "";
+	
+	board_title = $("#boardTitle").val().trim() || "";
+	board_content = $("#boardContent").val().trim() || "";
+	
+	if(board_title === ""){
+		alert("게시물 제목을 입력해주세요.");
+		return null;
+	}
+	if(board_content === ""){
+		alert("게시물 내용을 입력해주세요.");
+		return null;
+	}
+	
+	param.board_no = dtlBoardNo;
+	param.board_title = board_title;
+	param.board_content = board_content;
+	
+	return param;
+}
+
 function setDetailData(res){
 	var detailData = res.boardList[0];
 	
+	dtlBoardNo = detailData.board_no;
 	$("#boardNo").val(detailData.board_no);
 	$("#boardTitle").val(detailData.board_title);
 	$("#boardContent").val(detailData.board_content);
@@ -132,14 +163,39 @@ function setDetailData(res){
 	
 }
 
-function goModProcess(){
+function goModProcess(data){
+	var param = data;
+	
+	$.ajax({
+		type : 'post',
+		url  : '/board/modify',
+		headers : {
+			"Content-Type" : "application/json",
+			"X-HTTP-Method-Override" : "POST"
+		},
+		dataType : 'json',
+		data  : JSON.stringify({
+			board_no : data.board_no,
+			board_title : data.board_title,
+			board_content : data.board_content,
+			reg_no : ""
+		}),
+		success : function(res){
+			console.log(res);
+			alert('수정되었습니다.');
+			setTimeout(goList, 100);
+		}
+	});
 	
 }
 
 function goList(){
-	formObj.attr("action", "/board/boardMyList/page");
-	formObj.attr("method", "get");
-	formObj.submit();
+	
+	var url = "/board/boardMyList/page";
+	var param = "";
+	param += "?list=" + urlParam.list || "N";
+	
+	location.href=url+param;
 }
 
 </script>

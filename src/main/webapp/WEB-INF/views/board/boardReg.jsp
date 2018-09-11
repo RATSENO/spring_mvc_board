@@ -116,6 +116,7 @@ function goRegProcess(data){
 		success : function(res){
 			console.log(res);
 			alert('등록되었습니다.');
+			setTimeout(goList, 100);
 		}
 	});
 	

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ratseno.board.board.mapper.BoardMapper;
+import com.ratseno.board.board.model.req.BoardModReq;
 import com.ratseno.board.board.model.req.BoardRegReq;
 import com.ratseno.board.board.model.req.BoardSearchReq;
 import com.ratseno.board.board.model.res.BoardListRes;
@@ -96,6 +97,12 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void boardTestDeleteAll() throws Exception {
 		int delete = boardMapper.deleteBoardAll();
+	}
+
+	/*게시물 수정*/
+	@Override
+	public void boardMod(BoardModReq boardModReq) throws Exception {
+		int resultCnt = boardMapper.updateBoard(boardModReq);
 	}
 
 

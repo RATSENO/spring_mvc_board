@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ratseno.board.board.model.req.BoardModReq;
 import com.ratseno.board.board.model.req.BoardRegReq;
 import com.ratseno.board.board.model.req.BoardSearchReq;
 import com.ratseno.board.board.model.res.BoardListRes;
@@ -25,6 +26,7 @@ public class BoardController {
 	BoardService boardService;
 	
 
+	/*게시물 등록*/
 	@RequestMapping(value="/regist", method=RequestMethod.POST)
 	@LoginMemberInfo
 	public ResponseEntity<String> boardRegist(HttpServletRequest request, @RequestBody BoardRegReq boardRegReq){
@@ -41,7 +43,7 @@ public class BoardController {
 		return entity;
 	}
 	
-	
+	/*게시물 전체 목록 조회*/
 	@RequestMapping(value="/list", method=RequestMethod.POST)
 	public ResponseEntity<BoardListRes> boardList(HttpServletRequest request, @RequestBody BoardSearchReq boardSearchReq){
 		ResponseEntity<BoardListRes> entity = null;
@@ -59,7 +61,7 @@ public class BoardController {
 		return entity;
 	}
 	
-	
+	/*게시물 내 목록 조회*/
 	@RequestMapping(value="/mylist", method=RequestMethod.POST)
 	@LoginMemberInfo
 	public ResponseEntity<BoardListRes> boardMyList(HttpServletRequest request, @RequestBody BoardSearchReq boardSearchReq){
@@ -78,9 +80,7 @@ public class BoardController {
 		return entity;
 	}
 	
-	
-	
-	
+	/*게시물 상세 조회*/
 	@RequestMapping(value="/detail", method=RequestMethod.POST)
 	public ResponseEntity<BoardListRes> boardDetail(HttpServletRequest request, @RequestBody BoardSearchReq boardSearchReq){
 		ResponseEntity<BoardListRes> entity = null;
@@ -97,6 +97,26 @@ public class BoardController {
 		}
 		return entity;
 	}
+	
+	/*게시물 수정*/
+	@RequestMapping(value="/modify", method=RequestMethod.POST)
+	@LoginMemberInfo
+	public ResponseEntity<String> boardModify(HttpServletRequest request, @RequestBody BoardModReq boardModReq){
+		ResponseEntity<String> entity = null;
+		BoardModReq req = boardModReq;
+		
+		try {
+			boardService.boardMod(req);
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}	
+	
+	
+	
 	
 	@RequestMapping(value="/testBoardRegist", method= RequestMethod.POST)
 	public void test100boardRegist() throws Exception {

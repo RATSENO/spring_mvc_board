@@ -11,7 +11,7 @@ public class MemberLoginReq extends CommonVO{
 	private String user_id;
 	//회원 비밀번호
 	private String user_pwd;
-	
+	//자동 로그인
 	private boolean user_cookie;
 	
 }
