@@ -173,7 +173,7 @@ function goModProcess(data){
 			"Content-Type" : "application/json",
 			"X-HTTP-Method-Override" : "POST"
 		},
-		dataType : 'json',
+		dataType : 'text',
 		data  : JSON.stringify({
 			board_no : data.board_no,
 			board_title : data.board_title,
@@ -184,6 +184,9 @@ function goModProcess(data){
 			console.log(res);
 			alert('수정되었습니다.');
 			setTimeout(goList, 100);
+		},
+		error : function(err){
+			
 		}
 	});
 	

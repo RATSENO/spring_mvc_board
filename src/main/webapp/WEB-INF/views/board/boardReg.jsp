@@ -106,7 +106,7 @@ function goRegProcess(data){
 			"Content-Type" : "application/json",
 			"X-HTTP-Method-Override" : "POST"
 		},
-		dataType : 'json',
+		dataType : 'text',
 		data : JSON.stringify({
 			board_no : "",
 			board_title : data.board_title,
